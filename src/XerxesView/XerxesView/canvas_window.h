@@ -1,15 +1,20 @@
 #pragma once
 
 #include <windows.h>
+#include <mfplay.h>
 
 #define CANVAS_WINDOW_CLASS_NAME L"XerxesViewCanvasWindow"
 
 namespace xerxes
 {
+    //class MediaPlayerCallback;
+
     class canvas_window {
     private:
         static ATOM _registration;
         static HWND _wnd;
+        static IMFPMediaPlayer *_player;
+        static bool _is_playing;
 
         static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -22,5 +27,7 @@ namespace xerxes
 
         // No instances possible
         canvas_window() = delete;
+
+        friend class MediaPlayerCallback;
     };
 }
